@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "302188883059",
+    "project_id": "finanzas-cab04",
+    "storage_bucket": "finanzas-cab04.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:302188883059:android:d020a747591adcf475ce06",
+        "android_client_info": {
+          "package_name": "com.pablosflores.finanzas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "302188883059-lhgv0dadubc9eicocbv0n9a07vfp58qm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQcNA9nFdeYih-ZUdm4aJZv1FauFZxMXM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "302188883059-lhgv0dadubc9eicocbv0n9a07vfp58qm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
