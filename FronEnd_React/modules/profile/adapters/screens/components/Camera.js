@@ -30,39 +30,40 @@ export default function CameraComponent  ({  isVisible, onClose, onPictureTaken 
       setIsPreview(true);
       // Crear objeto FormData para enviar la imagen a la API
       const formData = new FormData();
-      formData.append('file', {
+      formData.append('imagen', {
         uri: data.uri,
         name: 'photo.jpg',
         type: 'image/jpeg'
       });
   
       try {
-        const response = await fetch('http://127.0.0.1:5000/detected_img', {
+        console.log("Entro al try para solicitud :D");
+        const response = await fetch('http://192.168.137.252:5000/detected_img', {
           method: 'POST',
           body: formData
         });
   
         if (response.ok) {
-          // La imagen se envió correctamente a la API
+          const responseText = await response.text();
+
+          console.log(responseText);
   
           // Aquí puedes realizar las acciones adicionales que deseas después de enviar la imagen
   
         } else {
           // Ocurrió un error al enviar la imagen a la API
+          console.log(response);
           console.log('Error al enviar la imagen a la API');
         }
       } catch (error) {
         console.log('Error de red:', error);
+      } finally {
+        setIsLoading(false);
       }
-  
-      
-  
-      // Resto del código de la función...
     }
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
+    // Resto del código de la función...
   };
+  
   
   const closeCamera = () => {
     setIsPreview(false); // Cierra la vista previa de la imagen
@@ -79,30 +80,26 @@ export default function CameraComponent  ({  isVisible, onClose, onPictureTaken 
   return (
     <View style={styles.container}>
       {isLoading && <Loader />}
-      {!isLoading && (
-        <Camera
-          style={styles.camera}
-          type={cameraType}
-          ref={(ref) => {
-            camera = ref;
-          }}
-        >
+      <Camera
+        style={styles.camera}
+        type={cameraType}
+        ref={(ref) => {
+          camera = ref;
+        }}
+      >
+        {isLoading ? (
+          <View /> // Mostrar un componente vacío mientras isLoading es true
+        ) : (
           <View style={styles.buttonContainer}>
-          <TouchableOpacity
-              style={styles.button}
-              onPress={takePicture}
-            >
+            <TouchableOpacity style={styles.button} onPress={takePicture}>
               <Text style={styles.text}>Tomar Foto</Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={closeCamera}
-            >
+            <TouchableOpacity style={styles.button} onPress={closeCamera}>
               <Text style={styles.text}>Cerrar</Text>
             </TouchableOpacity>
           </View>
-        </Camera>
-      )}
+        )}
+      </Camera>
     </View>
   );
 };
