@@ -42,7 +42,7 @@ export default function CameraComponent  ({  isVisible, onClose, onPictureTaken 
           method: 'POST',
           body: formData
         });
-  
+
         if (response.ok) {
           const responseText = await response.text();
 
